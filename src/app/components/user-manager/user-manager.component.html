@@ -1,0 +1,26 @@
+<nav class="navbar bg-light">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">Task4</a>
+    <div>
+      Hello, {{ username }}! <a href="login" (click)="logout()">Logout</a>
+    </div>
+  </div>
+</nav>
+
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-12">
+      <app-user-actions
+        (deleteEvent)="deleteSelected()"
+        (blockEvent)="setStatusToSelectedUsers(1)"
+        (unblockEvent)="setStatusToSelectedUsers(0)"
+      ></app-user-actions>
+
+      <app-table
+        [users]="mappedUsers"
+        (setOneEvent)="setOne($event)"
+        (setAllEvent)="setAll($event)"
+      ></app-table>
+    </div>
+  </div>
+</div>

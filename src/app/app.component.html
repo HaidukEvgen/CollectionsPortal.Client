@@ -1,14 +1,2 @@
-﻿<table *ngIf="users">
-  <thead>
-    <tr>
-      <th>Id</th>
-      <th>Status</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let user of users">
-      <td>{{ user.id }}</td>
-      <td>{{ user.status }}</td>
-    </tr>
-  </tbody>
-</table>
+﻿<router-outlet></router-outlet>
+<ng-toast></ng-toast>

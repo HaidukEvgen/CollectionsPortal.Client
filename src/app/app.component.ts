@@ -1,35 +1,10 @@
-import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
-
-interface User {
-  status: string;
-  id: number;
-}
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  styleUrl: './app.component.css',
 })
-export class AppComponent implements OnInit {
-  public users: User[] = [];
-
-  constructor(private http: HttpClient) {}
-
-  ngOnInit() {
-    this.getForecasts();
-  }
-
-  getForecasts() {
-    this.http.get<User[]>('https://collections-portal-api.azurewebsites.net/api/users').subscribe(
-      (result) => {
-        this.users = result;
-      },
-      (error) => {
-        console.error(error);
-      }
-    );
-  }
-
+export class AppComponent {
   title = 'CollectionsPortal.Client';
 }
