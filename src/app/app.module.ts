@@ -8,9 +8,11 @@ import { AuthGuard } from './guards/auth.guard';
 import { CommonModule, DatePipe } from '@angular/common';
 import { NgToastModule } from 'ng-angular-popup';
 import { TokenInterceptor } from './interceptors/token.interceptor';
+import { MainPageComponent } from './components/main-page/main-page.component';
+import { HeaderComponent } from './components/header/header.component';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, MainPageComponent, HeaderComponent],
   imports: [
     BrowserModule,
     HttpClientModule,

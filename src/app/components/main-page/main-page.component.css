@@ -1,0 +1,136 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: linear-gradient(
+      to bottom,
+      #d9d9ff 25%,
+      #c9c9ff 30%,
+      #7f7fd0 60%,
+      #7272bb 70%
+    )
+    no-repeat;
+}
+
+/* ARTICLES PARAMETERS */
+.welcome-article {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 100%;
+  height: 100svh;
+  max-height: 100%;
+}
+
+.small-article {
+  padding: 1%;
+  width: 100%;
+  min-height: 15svh;
+  max-height: fit-content;
+}
+
+.big-article {
+  padding: 2%;
+  width: 100%;
+  height: 100svh;
+  max-height: 100%;
+}
+
+footer {
+  width: 100%;
+  height: 50svh;
+
+  background-color: dimgrey;
+  background: linear-gradient(#7272bb 1%, dimgrey 99%);
+}
+
+/* SECTION PARAMETERS */
+.welcome-section {
+  display: grid;
+  gap: 1em;
+  grid-template-rows: min-content;
+  min-height: 50%;
+
+  width: clamp(250px, 50%, 800px);
+
+  padding: 2em;
+}
+
+.small-article-iconbox {
+  display: grid;
+  height: 100%;
+
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  justify-items: center;
+  align-items: center;
+}
+
+.last-cards-collection {
+  display: flex;
+  justify-content: space-evenly;
+  gap: 1em;
+  padding: 2em;
+
+  width: 100%;
+}
+
+/* WEB OBJECTS */
+.icon {
+  font-size: clamp(2.5rem, 3vw + 1rem, 3rem);
+}
+
+.last-card-object {
+  width: 25em;
+  height: 30em;
+
+  background-color: transparent;
+  border-radius: 15px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+}
+
+/* TEXT PARAMETERS */
+h1,
+h2,
+h3 {
+  font-family: "Roboto", sans-serif;
+}
+
+p {
+  font-family: "Nunito", sans-serif;
+}
+
+.header-text-unicons {
+  font-size: clamp(0.5rem, 1.5vw + 1rem, 2rem);
+  text-align: center;
+}
+
+/* DESIGN */
+
+.white-section {
+  background-color: azure;
+  border-radius: 15px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+}
+
+.white-section-sm {
+  background-color: azure;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+}
+
+/* MEDIA QURERY */
+
+@media screen and (width <= 1700px) {
+  .last-cards-collection {
+    flex-wrap: wrap;
+  }
+}
