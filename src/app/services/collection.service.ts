@@ -2,53 +2,61 @@ import { Injectable } from '@angular/core';
 import { environment } from '../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Collection, Item, NewCollection, NewItem } from '../models/collection.model';
+import { Category, Collection, Item, NewCollection, NewItem, Tag } from '../models/collection.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CollectionService {
-  apiUrl = `${environment.apiURL}/collections`;
+  apiUrl = `${environment.apiURL}`;
 
   constructor(private http: HttpClient) {}
 
   getCollections(): Observable<Collection[]> {
-    return this.http.get<Collection[]>(this.apiUrl);
+    return this.http.get<Collection[]>(`${this.apiUrl}/collections`);
   }
 
   getCollection(collectionId: number): Observable<Collection> {
-    return this.http.get<Collection>(`${this.apiUrl}/${collectionId}`);
+    return this.http.get<Collection>(`${this.apiUrl}/collections/${collectionId}`);
   }
 
-  createCollection(newCollection: NewCollection): Observable<any> {
-    return this.http.post(this.apiUrl, newCollection);
+  createCollection(newCollection: FormData){
+    return this.http.post(`${this.apiUrl}/collections`, newCollection);
   }
 
-  updateCollection(collectionId: number, newCollection: NewCollection): Observable<any> {
-    return this.http.put(`${this.apiUrl}/${collectionId}`, newCollection);
+  updateCollection(collectionId: number, newCollection: NewCollection) {
+    return this.http.put(`${this.apiUrl}/collections/${collectionId}`, newCollection);
   }
 
-  deleteCollection(collectionId: number): Observable<any> {
-    return this.http.delete(`${this.apiUrl}/${collectionId}`);
+  deleteCollection(collectionId: number) {
+    return this.http.delete(`${this.apiUrl}/collections/${collectionId}`);
   }
 
   getAllCollectionItems(collectionId: number): Observable<Item[]> {
-    return this.http.get<Item[]>(`${this.apiUrl}/${collectionId}/items`);
+    return this.http.get<Item[]>(`${this.apiUrl}/collections/${collectionId}/items`);
   }
 
   getCollectionItem(collectionId: number, itemId: number): Observable<Item> {
-    return this.http.get<Item>(`${this.apiUrl}/${collectionId}/items/${itemId}`);
+    return this.http.get<Item>(`${this.apiUrl}/collections/${collectionId}/items/${itemId}`);
   }
 
-  addCollectionItem(collectionId: number, newItem: NewItem): Observable<any> {
-    return this.http.post(`${this.apiUrl}/${collectionId}/items`, newItem);
+  addCollectionItem(collectionId: number, newItem: NewItem) {
+    return this.http.post(`${this.apiUrl}/collections/${collectionId}/items`, newItem);
   }
 
-  updateCollectionItem(collectionId: number, itemId: number, newItem: NewItem): Observable<any> {
-    return this.http.put(`${this.apiUrl}/${collectionId}/items/${itemId}`, newItem);
+  updateCollectionItem(collectionId: number, itemId: number, newItem: NewItem) {
+    return this.http.put(`${this.apiUrl}/collections/${collectionId}/items/${itemId}`, newItem);
   }
 
-  deleteCollectionItem(collectionId: number, itemId: number): Observable<any> {
-    return this.http.delete(`${this.apiUrl}/${collectionId}/items/${itemId}`);
+  deleteCollectionItem(collectionId: number, itemId: number){
+    return this.http.delete(`${this.apiUrl}/collections/${collectionId}/items/${itemId}`);
+  }
+
+  getAllCategories(): Observable<Category[]> {
+    return this.http.get<Category[]>(`${this.apiUrl}/categories`);
+  }
+
+  getAllTags(): Observable<Tag[]> {
+    return this.http.get<Tag[]>(`${this.apiUrl}/tags`);
   }
 }

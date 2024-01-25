@@ -20,7 +20,11 @@ export class ExceptionHandler {
           break;
         default:
           this.showNotification(
-            err.statusText + ' error: ' + err.error.Message,
+            err.statusText +
+              ' error: ' +
+              (err.error.Message != undefined
+                ? err.error.Message
+                : err.error.title),
             toast
           );
           if (redirectUrl) {

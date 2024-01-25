@@ -97,15 +97,18 @@ export class ItemDetailComponent {
   }
 
   deleteItem() {
-    this.collectionService.deleteCollectionItem(this.collectionId, this.itemId).subscribe(
-      (error) => {
-        this.exceptionHandler.handleHttpError(
-          error,
-          `/collections/${this.collectionId}`,
-          this.router,
-          this.toast
-        );
-      }
-    );
+    this.collectionService
+      .deleteCollectionItem(this.collectionId, this.itemId)
+      .subscribe(
+        (data) => {},
+        (error) => {
+          this.exceptionHandler.handleHttpError(
+            error,
+            `/collections/${this.collectionId}`,
+            this.router,
+            this.toast
+          );
+        }
+      );
   }
 }
