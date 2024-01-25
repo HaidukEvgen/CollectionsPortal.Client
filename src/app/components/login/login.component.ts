@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, ErrorHandler } from '@angular/core';
 import {
   FormBuilder,
   FormControl,
@@ -13,6 +13,7 @@ import { NgToastModule, NgToastService } from 'ng-angular-popup';
 import { AuthService } from '../../services/auth.service';
 import { StorageService } from '../../services/storage.service';
 import { HttpErrorResponse } from '@angular/common/http';
+import { ExceptionHandler } from '../../helpers/exceptionHandler';
 
 @Component({
   selector: 'app-login',
@@ -33,7 +34,8 @@ export class LoginComponent {
     private authService: AuthService,
     private storageService: StorageService,
     private router: Router,
-    private toast: NgToastService
+    private toast: NgToastService,
+    private exceptionHandler: ExceptionHandler
   ) {}
 
   onSubmit(): void {
@@ -57,8 +59,13 @@ export class LoginComponent {
       next: (res) => {
         this.handleLoginSuccess(res);
       },
-      error: (err) => {
-        this.handleLoginError(err);
+      error: (error) => {
+        this.exceptionHandler.handleHttpError(
+          error,
+          '',
+          this.router,
+          this.toast
+        );
       },
     });
   }
@@ -74,22 +81,6 @@ export class LoginComponent {
     });
     this.router.navigate(['user-manager']);
     this.loginForm.reset();
-  }
-
-  private handleLoginError(err: any) {
-    if (err instanceof HttpErrorResponse && err.status === 0) {
-      this.toast.error({
-        detail: 'Error',
-        summary: 'Failed to connect to the API',
-        duration: 3000,
-      });
-    } else {
-      this.toast.error({
-        detail: 'Error',
-        summary: err.error.Message,
-        duration: 3000,
-      });
-    }
   }
 
   private displayFormError() {

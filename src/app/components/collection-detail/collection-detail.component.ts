@@ -3,7 +3,7 @@ import { Collection } from '../../models/collection.model';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CollectionService } from '../../services/collection.service';
 import { NgToastService } from 'ng-angular-popup';
-import { HttpErrorResponse } from '@angular/common/http';
+import { ExceptionHandler } from '../../helpers/exceptionHandler';
 
 @Component({
   selector: 'app-collection-detail',
@@ -19,49 +19,34 @@ export class CollectionDetailComponent {
     private route: ActivatedRoute,
     private router: Router,
     private collectionService: CollectionService,
-    private toast: NgToastService
+    private toast: NgToastService,
+    private exceptionHandler: ExceptionHandler
   ) {}
 
   ngOnInit(): void {
     this.route.params.subscribe((params) => {
       this.collectionId = +params['id'];
-      this.collectionService.getCollection(this.collectionId).subscribe(
-        (data) => {
-          this.collection = data;
-        },
-        (error) => {
-          this.handleError(error);
-        }
-      );
+      this.getCollection();
     });
+  }
+
+  private getCollection() {
+    this.collectionService.getCollection(this.collectionId).subscribe(
+      (data) => {
+        this.collection = data;
+      },
+      (error) => {
+        this.exceptionHandler.handleHttpError(
+          error,
+          '/collections',
+          this.router,
+          this.toast
+        );
+      }
+    );
   }
 
   redirectToItemPage(collectionId: number, itemId: number): void {
     this.router.navigate(['/collections', collectionId, 'items', itemId]);
   }
-
-  private handleError(err: any) {
-    if (err instanceof HttpErrorResponse) {
-      switch (err.status) {
-        case 0:
-          this.showNotification('Failed to connect to the API');
-          break;
-        default:
-          this.showNotification(err.statusText + " error: " + err.error.Message);
-          this.router.navigate(['/collections']);
-          break;
-      }
-    } else {
-      this.showNotification('An unexpected error occurred');
-    }
-  }
-  
-  private showNotification(message: string): void {
-    this.toast.error({
-      detail: 'Error',
-      summary: message,
-      duration: 3000,
-    });
-  }
-  
 }

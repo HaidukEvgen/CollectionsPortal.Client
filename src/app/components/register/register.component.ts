@@ -10,7 +10,7 @@ import { UserService } from '../../services/user.service';
 import { UserRegisterModel } from '../../models/user.model';
 import { Router } from '@angular/router';
 import { NgToastService } from 'ng-angular-popup';
-import { HttpErrorResponse } from '@angular/common/http';
+import { ExceptionHandler } from '../../helpers/exceptionHandler';
 
 @Component({
   selector: 'app-register',
@@ -30,7 +30,8 @@ export class RegisterComponent {
     private formBuilder: FormBuilder,
     private userService: UserService,
     private router: Router,
-    private toast: NgToastService
+    private toast: NgToastService,
+    private exceptionHandler: ExceptionHandler
   ) {}
 
   onSubmit(): void {
@@ -55,8 +56,13 @@ export class RegisterComponent {
       next: (res) => {
         this.handleRegistrationSuccess(res);
       },
-      error: (err) => {
-        this.handleRegistrationError(err);
+      error: (error) => {
+        this.exceptionHandler.handleHttpError(
+          error,
+          '',
+          this.router,
+          this.toast
+        );
       },
     });
   }
@@ -69,22 +75,6 @@ export class RegisterComponent {
     });
     this.router.navigate(['login']);
     this.registerForm.reset();
-  }
-
-  private handleRegistrationError(err: any): void {
-    if (err instanceof HttpErrorResponse && err.status === 0) {
-      this.toast.error({
-        detail: 'Error',
-        summary: 'Failed to connect to the API',
-        duration: 3000,
-      });
-    } else {
-      this.toast.error({
-        detail: 'Error',
-        summary: err.error.Message,
-        duration: 3000,
-      });
-    }
   }
 
   private displayFormError(): void {

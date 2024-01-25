@@ -3,7 +3,7 @@ import { Collection } from '../../models/collection.model';
 import { CollectionService } from '../../services/collection.service';
 import { Router } from '@angular/router';
 import { NgToastService } from 'ng-angular-popup';
-import { HttpErrorResponse } from '@angular/common/http';
+import { ExceptionHandler } from '../../helpers/exceptionHandler';
 
 @Component({
   selector: 'app-collections-list',
@@ -16,7 +16,8 @@ export class CollectionsListComponent {
   constructor(
     private collectionService: CollectionService,
     private router: Router,
-    private toast: NgToastService
+    private toast: NgToastService,
+    private exceptionHandler: ExceptionHandler
   ) {}
 
   ngOnInit(): void {
@@ -29,37 +30,17 @@ export class CollectionsListComponent {
         this.collections = data;
       },
       (error) => {
-        this.handleError(error);
+        this.exceptionHandler.handleHttpError(
+          error,
+          '/collections',
+          this.router,
+          this.toast
+        );
       }
     );
   }
 
   redirectToCollectionDetails(collectionId: number): void {
     this.router.navigate(['/collections', collectionId]);
-  }
-
-  private handleError(err: any) {
-    if (err instanceof HttpErrorResponse) {
-      switch (err.status) {
-        case 0:
-          this.showNotification('Failed to connect to the API');
-          break;
-        default:
-          this.showNotification(
-            err.statusText + ' error: ' + err.error.Message
-          );
-          break;
-      }
-    } else {
-      this.showNotification('An unexpected error occurred');
-    }
-  }
-
-  private showNotification(message: string): void {
-    this.toast.error({
-      detail: 'Error',
-      summary: message,
-      duration: 3000,
-    });
   }
 }

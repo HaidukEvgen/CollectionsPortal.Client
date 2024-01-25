@@ -13,6 +13,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { CollectionsListComponent } from './components/collections-list/collections-list.component';
 import { CollectionDetailComponent } from './components/collection-detail/collection-detail.component';
 import { MatTableModule } from '@angular/material/table';
+import { ItemDetailComponent } from './components/item-detail/item-detail.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { MatTableModule } from '@angular/material/table';
     HeaderComponent,
     CollectionsListComponent,
     CollectionDetailComponent,
+    ItemDetailComponent,
   ],
   imports: [
     BrowserModule,

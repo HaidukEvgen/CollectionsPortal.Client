@@ -36,6 +36,10 @@ export class CollectionService {
     return this.http.get<Item[]>(`${this.apiUrl}/${collectionId}/items`);
   }
 
+  getCollectionItem(collectionId: number, itemId: number): Observable<Item> {
+    return this.http.get<Item>(`${this.apiUrl}/${collectionId}/items/${itemId}`);
+  }
+
   addCollectionItem(collectionId: number, newItem: NewItem): Observable<any> {
     return this.http.post(`${this.apiUrl}/${collectionId}/items`, newItem);
   }

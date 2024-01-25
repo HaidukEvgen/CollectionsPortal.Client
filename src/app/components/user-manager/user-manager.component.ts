@@ -5,8 +5,9 @@ import { UserService } from '../../services/user.service';
 import { TableUser } from '../../models/user.model';
 import { AuthService } from '../../services/auth.service';
 import { StorageService } from '../../services/storage.service';
-import { HttpErrorResponse } from '@angular/common/http';
 import { NgToastService } from 'ng-angular-popup';
+import { ExceptionHandler } from '../../helpers/exceptionHandler';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-user-manager',
@@ -24,7 +25,9 @@ export class UserManagerComponent {
     private userService: UserService,
     private authService: AuthService,
     private storageService: StorageService,
-    private toast: NgToastService
+    private toast: NgToastService,
+    private router: Router,
+    private exceptionHandler: ExceptionHandler
   ) {}
 
   ngOnInit() {
@@ -43,7 +46,12 @@ export class UserManagerComponent {
         }));
       },
       (error) => {
-        this.handleRequestError(error);
+        this.exceptionHandler.handleHttpError(
+          error,
+          '',
+          this.router,
+          this.toast
+        );
       }
     );
   }
@@ -59,7 +67,12 @@ export class UserManagerComponent {
         this.tableComponent.allChecked = false;
       },
       (error) => {
-        this.handleRequestError(error);
+        this.exceptionHandler.handleHttpError(
+          error,
+          '',
+          this.router,
+          this.toast
+        );
       }
     );
   }
@@ -75,27 +88,14 @@ export class UserManagerComponent {
         this.tableComponent.allChecked = false;
       },
       (error) => {
-        this.handleRequestError(error);
+        this.exceptionHandler.handleHttpError(
+          error,
+          '',
+          this.router,
+          this.toast
+        );
       }
     );
-  }
-
-  private handleRequestError(error: any): void {
-    if (error instanceof HttpErrorResponse) {
-      if (error.status === 0) {
-        this.toast.error({
-          detail: 'Error',
-          summary: 'Failed to connect to the API',
-          duration: 3000,
-        });
-      } else {
-        this.toast.error({
-          detail: 'Error',
-          summary: error.error,
-          duration: 3000,
-        });
-      }
-    }
   }
 
   logout() {
