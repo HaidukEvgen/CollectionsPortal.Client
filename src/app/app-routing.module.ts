@@ -10,6 +10,7 @@ import { CollectionDetailComponent } from './components/collection-detail/collec
 import { ItemDetailComponent } from './components/item-detail/item-detail.component';
 import { NewCollectionComponent } from './components/new-collection/new-collection.component';
 import { AdminGuard } from './guards/admin.guard';
+import { NewItemComponent } from './components/new-item/new-item.component';
 
 export const routes: Routes = [
   { path: '', component: MainPageComponent },
@@ -32,6 +33,11 @@ export const routes: Routes = [
   {
     path: 'new-collection',
     component: NewCollectionComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'collections/:id/new-item',
+    component: NewItemComponent,
     canActivate: [AuthGuard],
   },
 ];

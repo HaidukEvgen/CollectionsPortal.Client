@@ -17,6 +17,7 @@ import { ItemDetailComponent } from './components/item-detail/item-detail.compon
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NewCollectionComponent } from './components/new-collection/new-collection.component';
 import { AdminGuard } from './guards/admin.guard';
+import { NewItemComponent } from './components/new-item/new-item.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { AdminGuard } from './guards/admin.guard';
     CollectionDetailComponent,
     ItemDetailComponent,
     NewCollectionComponent,
+    NewItemComponent,
   ],
   imports: [
     BrowserModule,

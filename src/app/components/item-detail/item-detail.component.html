@@ -203,4 +203,7 @@
     <button class="btn btn-primary" (click)="getItem()">Edit</button>
     <button class="btn btn-danger" (click)="deleteItem()">Delete</button>
   </div>
+  <span *ngIf="!canEditItem" class="text-danger">
+    You don't have permission to edit this collection.
+  </span>
 </div>

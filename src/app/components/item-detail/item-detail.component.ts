@@ -42,8 +42,7 @@ export class ItemDetailComponent {
     private collectionService: CollectionService,
     private toast: NgToastService,
     private exceptionHandler: ExceptionHandler,
-    private authService: AuthService,
-    private formBuilder: FormBuilder
+    private authService: AuthService
   ) {}
 
   ngOnInit(): void {

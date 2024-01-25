@@ -39,8 +39,21 @@
           </ng-container>
 
           <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-          <tr mat-row *matRowDef="let item; columns: displayedColumns" (click)="redirectToItemPage(collection.id, item.id)"></tr>
+          <tr
+            mat-row
+            *matRowDef="let item; columns: displayedColumns"
+            (click)="redirectToItemPage(collection.id, item.id)"
+          ></tr>
         </table>
+
+        <div *ngIf="collection"  class="text-center mt-3 mb-5">
+          <button *ngIf="canEditCollection" class="btn btn-primary" (click)="redirectToNewItemPage()">
+            Add New Item
+          </button>
+          <span *ngIf="!canEditCollection" class="text-danger">
+            You don't have permission to edit this collection.
+          </span>
+        </div>
       </div>
     </div>
   </div>
