@@ -1,1 +1,206 @@
-<p>item-detail works!</p>
+<div *ngIf="collection && item" class="container mt-4">
+  <h2>{{ item.name }}</h2>
+
+  <div
+    *ngIf="shouldDisplayCustomField(collection.customString1Name)"
+    class="form-group"
+  >
+    <label>{{ collection.customString1Name }}</label>
+    <input
+      type="text"
+      class="form-control"
+      [(ngModel)]="item.customString1Value"
+      readonly
+    />
+  </div>
+
+  <div
+    *ngIf="shouldDisplayCustomField(collection.customString2Name)"
+    class="form-group"
+  >
+    <label>{{ collection.customString2Name }}</label>
+    <input
+      type="text"
+      class="form-control"
+      [(ngModel)]="item.customString2Value"
+      readonly
+    />
+  </div>
+
+  <div
+    *ngIf="shouldDisplayCustomField(collection.customString3Name)"
+    class="form-group"
+  >
+    <label>{{ collection.customString3Name }}</label>
+    <input
+      type="text"
+      class="form-control"
+      [(ngModel)]="item.customString3Value"
+      readonly
+    />
+  </div>
+
+  <div
+    *ngIf="shouldDisplayCustomField(collection.customInt1Name)"
+    class="form-group"
+  >
+    <label>{{ collection.customInt1Name }}</label>
+    <input
+      type="number"
+      class="form-control"
+      [(ngModel)]="item.customInt1Value"
+      readonly
+    />
+  </div>
+
+  <div
+    *ngIf="shouldDisplayCustomField(collection.customInt2Name)"
+    class="form-group"
+  >
+    <label>{{ collection.customInt2Name }}</label>
+    <input
+      type="number"
+      class="form-control"
+      [(ngModel)]="item.customInt2Value"
+      readonly
+    />
+  </div>
+
+  <div
+    *ngIf="shouldDisplayCustomField(collection.customInt3Name)"
+    class="form-group"
+  >
+    <label>{{ collection.customInt3Name }}</label>
+    <input
+      type="number"
+      class="form-control"
+      [(ngModel)]="item.customInt3Value"
+      readonly
+    />
+  </div>
+
+  <div
+    *ngIf="shouldDisplayCustomField(collection.customText1Name)"
+    class="form-group"
+  >
+    <label>{{ collection.customText1Name }}</label>
+    <textarea
+      class="form-control"
+      [(ngModel)]="item.customText1Value"
+      readonly
+    ></textarea>
+  </div>
+
+  <div
+    *ngIf="shouldDisplayCustomField(collection.customText2Name)"
+    class="form-group"
+  >
+    <label>{{ collection.customText2Name }}</label>
+    <textarea
+      class="form-control"
+      [(ngModel)]="item.customText2Value"
+      readonly
+    ></textarea>
+  </div>
+
+  <div
+    *ngIf="shouldDisplayCustomField(collection.customText3Name)"
+    class="form-group"
+  >
+    <label>{{ collection.customText3Name }}</label>
+    <textarea
+      class="form-control"
+      [(ngModel)]="item.customText3Value"
+      readonly
+    ></textarea>
+  </div>
+
+  <div
+    *ngIf="shouldDisplayCustomField(collection.customBool1Name)"
+    class="form-group"
+  >
+    <label>{{ collection.customBool1Name }}</label>
+    <div class="form-check">
+      <input
+        type="checkbox"
+        class="form-check-input"
+        [(ngModel)]="item.customBool1Value"
+        disabled
+      />
+    </div>
+  </div>
+
+  <div
+    *ngIf="shouldDisplayCustomField(collection.customBool2Name)"
+    class="form-group"
+  >
+    <label>{{ collection.customBool2Name }}</label>
+    <div class="form-check">
+      <input
+        type="checkbox"
+        class="form-check-input"
+        [(ngModel)]="item.customBool2Value"
+        readonly
+      />
+    </div>
+  </div>
+
+  <div
+    *ngIf="shouldDisplayCustomField(collection.customBool3Name)"
+    class="form-group"
+  >
+    <label>{{ collection.customBool3Name }}</label>
+    <div class="form-check">
+      <input
+        type="checkbox"
+        class="form-check-input"
+        [(ngModel)]="item.customBool3Value"
+        readonly
+      />
+    </div>
+  </div>
+
+  <div
+    *ngIf="shouldDisplayCustomField(collection.customDate1Name)"
+    class="form-group"
+  >
+    <label>{{ collection.customDate1Name }}</label>
+    <input
+      type="date"
+      class="form-control"
+      [(ngModel)]="item.customDate1Value"
+      readonly
+    />
+  </div>
+
+  <div
+    *ngIf="shouldDisplayCustomField(collection.customDate2Name)"
+    class="form-group"
+  >
+    <label>{{ collection.customDate2Name }}</label>
+    <input
+      type="date"
+      class="form-control"
+      [(ngModel)]="item.customDate2Value"
+      readonly
+    />
+  </div>
+
+  <div
+    *ngIf="shouldDisplayCustomField(collection.customDate3Name)"
+    class="form-group"
+  >
+    <label>{{ collection.customDate3Name }}</label>
+    <input
+      type="date"
+      class="form-control"
+      [(ngModel)]="item.customDate3Value"
+      readonly
+    />
+  </div>
+
+  <div *ngIf="canEditItem">
+    <button class="btn btn-primary" (click)="getItem()">Edit</button>
+    <button class="btn btn-danger" (click)="deleteItem()">Delete</button>
+  </div>
+</div>

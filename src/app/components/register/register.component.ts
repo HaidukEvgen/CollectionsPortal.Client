@@ -19,6 +19,7 @@ import { ExceptionHandler } from '../../helpers/exceptionHandler';
   templateUrl: './register.component.html',
   styleUrl: './register.component.css',
 })
+
 export class RegisterComponent {
   registerForm = this.formBuilder.group({
     name: new FormControl('', Validators.required),

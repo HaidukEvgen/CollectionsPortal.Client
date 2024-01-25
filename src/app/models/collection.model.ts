@@ -32,21 +32,21 @@ export interface Item {
   id: number;
   name: string;
   tags: Tag[];
-  customString1Name: string | null;
-  customString2Name: string | null;
-  customString3Name: string | null;
-  customInt1Name: string | null;
-  customInt2Name: string | null;
-  customInt3Name: string | null;
-  customText1Name: string | null;
-  customText2Name: string | null;
-  customText3Name: string | null;
-  customBool1Name: string | null;
-  customBool2Name: string | null;
-  customBool3Name: string | null;
-  customDate1Name: string | null;
-  customDate2Name: string | null;
-  customDate3Name: string | null;
+  customString1Value: string | null;
+  customString2Value: string | null;
+  customString3Value: string | null;
+  customInt1Value: string | null;
+  customInt2Value: string | null;
+  customInt3Value: string | null;
+  customText1Value: string | null;
+  customText2Value: string | null;
+  customText3Value: string | null;
+  customBool1Value: string | null;
+  customBool2Value: string | null;
+  customBool3Value: string | null;
+  customDate1Value: string | null;
+  customDate2Value: string | null;
+  customDate3Value: string | null;
 }
 
 export interface Tag {
@@ -77,7 +77,7 @@ export interface NewCollection {
 
 export interface NewItem {
   name: string;
-  tags: ItemTag[];
+  tags: Tag[];
   customString1Value?: string;
   customString2Value?: string;
   customString3Value?: string;
@@ -93,8 +93,4 @@ export interface NewItem {
   customDate1Value?: string;
   customDate2Value?: string;
   customDate3Value?: string;
-}
-
-export interface ItemTag {
-  name: string;
 }

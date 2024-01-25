@@ -14,6 +14,7 @@ import { CollectionsListComponent } from './components/collections-list/collecti
 import { CollectionDetailComponent } from './components/collection-detail/collection-detail.component';
 import { MatTableModule } from '@angular/material/table';
 import { ItemDetailComponent } from './components/item-detail/item-detail.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,8 @@ import { ItemDetailComponent } from './components/item-detail/item-detail.compon
     CommonModule,
     NgToastModule,
     MatTableModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [
     importProvidersFrom(HttpClientModule),
