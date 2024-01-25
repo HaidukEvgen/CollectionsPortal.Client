@@ -43,4 +43,8 @@ export class CollectionsListComponent {
   redirectToCollectionDetails(collectionId: number): void {
     this.router.navigate(['/collections', collectionId]);
   }
+
+  redirectToNewCollectionPage() {
+    this.router.navigate(['/new-collection']);
+  }
 }

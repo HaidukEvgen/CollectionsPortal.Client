@@ -20,11 +20,8 @@ export class UserManagerComponent {
   @ViewChild(AppTableComponent, { static: false })
   tableComponent!: AppTableComponent;
   mappedUsers: TableUser[] = [];
-  username: string = '';
   constructor(
     private userService: UserService,
-    private authService: AuthService,
-    private storageService: StorageService,
     private toast: NgToastService,
     private router: Router,
     private exceptionHandler: ExceptionHandler
@@ -32,9 +29,6 @@ export class UserManagerComponent {
 
   ngOnInit() {
     this.getUsers();
-    this.storageService.getUsername().subscribe((val) => {
-      this.username = val || this.authService.getUsername();
-    });
   }
 
   getUsers() {
@@ -96,10 +90,6 @@ export class UserManagerComponent {
         );
       }
     );
-  }
-
-  logout() {
-    this.authService.logout();
   }
 
   setAll(checked: boolean) {

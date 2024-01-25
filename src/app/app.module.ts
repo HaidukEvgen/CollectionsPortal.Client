@@ -15,6 +15,8 @@ import { CollectionDetailComponent } from './components/collection-detail/collec
 import { MatTableModule } from '@angular/material/table';
 import { ItemDetailComponent } from './components/item-detail/item-detail.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NewCollectionComponent } from './components/new-collection/new-collection.component';
+import { AdminGuard } from './guards/admin.guard';
 
 @NgModule({
   declarations: [
@@ -24,6 +26,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     CollectionsListComponent,
     CollectionDetailComponent,
     ItemDetailComponent,
+    NewCollectionComponent,
   ],
   imports: [
     BrowserModule,
@@ -38,6 +41,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
   providers: [
     importProvidersFrom(HttpClientModule),
     [AuthGuard],
+    [AdminGuard],
     {
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptor,

@@ -1,9 +1,16 @@
 <div class="collections-list">
-  <div *ngFor="let collection of collections" class="last-card-object" (click)="redirectToCollectionDetails(collection.id)">
+  <div
+    *ngFor="let collection of collections"
+    class="last-card-object"
+    (click)="redirectToCollectionDetails(collection.id)"
+  >
     <h2>{{ collection.name }}</h2>
     <img [src]="collection.imageUrl" alt="{{ collection.name }} Image" />
-    <p>{{ collection.description }}</p>
+    <p>Creator: {{ collection.creatorName }}</p>
   </div>
 </div>
-
-  
+<div *ngIf="collections" class="text-center mt-3 mb-5">
+  <button class="btn btn-primary" (click)="redirectToNewCollectionPage()">
+    Add New Collection
+  </button>
+</div>

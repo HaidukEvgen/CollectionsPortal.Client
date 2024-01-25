@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { JwtHelperService } from '@auth0/angular-jwt';
+import { BehaviorSubject } from 'rxjs';
 
 const roleTypeInToken =
   'http://schemas.microsoft.com/ws/2008/06/identity/claims/role';

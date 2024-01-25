@@ -78,9 +78,8 @@ export class LoginComponent {
       detail: 'Success',
       summary: res.message,
       duration: 3000,
-    });
-    this.router.navigate(['user-manager']);
-    this.loginForm.reset();
+    });   
+    window.location.href = '/collections';
   }
 
   private displayFormError() {
