@@ -1,0 +1,47 @@
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-12">
+      <div *ngIf="collection" class="collection-detail">
+        <h2 class="display-4">{{ collection.name }}</h2>
+        <p class="lead">Creator: {{ collection.creatorName }}</p>
+        <img
+          [src]="collection.imageUrl"
+          alt="{{ collection.name }} Image"
+          class="img-fluid rounded mb-3"
+          style="max-width: 60%"
+        />
+        <p class="lead">{{ collection.description }}</p>
+
+        <h3 class="mt-4 mb-3">Items in the Collection</h3>
+        <table
+          mat-table
+          [dataSource]="collection.items"
+          class="table mat-elevation-z8 bordered-table mt-3"
+        >
+          <ng-container matColumnDef="id">
+            <th mat-header-cell *matHeaderCellDef>ID</th>
+            <td mat-cell *matCellDef="let item">{{ item.id }}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef>Name</th>
+            <td mat-cell *matCellDef="let item">{{ item.name }}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="tags">
+            <th mat-header-cell *matHeaderCellDef>Tags</th>
+            <td mat-cell *matCellDef="let item">
+              <span *ngFor="let tag of item.tags; let last = last">
+                {{ tag.name }}
+                <span *ngIf="!last">, </span>
+              </span>
+            </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let item; columns: displayedColumns" (click)="redirectToItemPage(collection.id, item.id)"></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

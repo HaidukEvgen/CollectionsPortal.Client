@@ -72,28 +72,40 @@ footer {
   align-items: center;
 }
 
-.last-cards-collection {
-  display: flex;
-  justify-content: space-evenly;
-  gap: 1em;
-  padding: 2em;
-
-  width: 100%;
-}
-
 /* WEB OBJECTS */
 .icon {
   font-size: clamp(2.5rem, 3vw + 1rem, 3rem);
 }
 
+.last-cards-collection {
+  display: flex;
+  justify-content: space-evenly;
+  gap: 1em;
+  padding: 2em;
+  width: 100%;
+}
+
 .last-card-object {
   width: 25em;
   height: 30em;
-
   background-color: transparent;
   border-radius: 15px;
   border: 1px solid rgba(255, 255, 255, 0.18);
   box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.last-card-object img {
+  max-width: 100%;
+  border-radius: 15px 15px 0 0;
+}
+
+.last-card-object h2, .last-card-object p {
+  padding: 1em;
+  text-align: center;
 }
 
 /* TEXT PARAMETERS */

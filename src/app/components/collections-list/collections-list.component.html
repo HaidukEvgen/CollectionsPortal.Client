@@ -1,0 +1,9 @@
+<div class="collections-list">
+  <div *ngFor="let collection of collections" class="last-card-object" (click)="redirectToCollectionDetails(collection.id)">
+    <h2>{{ collection.name }}</h2>
+    <img [src]="collection.imageUrl" alt="{{ collection.name }} Image" />
+    <p>{{ collection.description }}</p>
+  </div>
+</div>
+
+  

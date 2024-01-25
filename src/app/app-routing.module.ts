@@ -5,8 +5,11 @@ import { RegisterComponent } from './components/register/register.component';
 import { UserManagerComponent } from './components/user-manager/user-manager.component';
 import { AuthGuard } from './guards/auth.guard';
 import { MainPageComponent } from './components/main-page/main-page.component';
+import { CollectionsListComponent } from './components/collections-list/collections-list.component';
+import { CollectionDetailComponent } from './components/collection-detail/collection-detail.component';
 
 export const routes: Routes = [
+  { path: '', component: MainPageComponent },
   {
     path: 'login',
     component: LoginComponent,
@@ -17,7 +20,8 @@ export const routes: Routes = [
     component: UserManagerComponent,
     canActivate: [AuthGuard],
   },
-  { path: '', component: MainPageComponent },
+  { path: 'collections', component: CollectionsListComponent },
+  { path: 'collections/:id', component: CollectionDetailComponent }
 ];
 
 @NgModule({

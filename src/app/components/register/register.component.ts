@@ -41,7 +41,7 @@ export class RegisterComponent {
       this.displayFormError();
     }
   }
-  
+
   private createUserRegisterModel(): UserRegisterModel {
     return {
       username: this.registerForm.value.name!,
@@ -49,7 +49,7 @@ export class RegisterComponent {
       password: this.registerForm.value.password!,
     };
   }
-  
+
   private registerUser(userRegisterModel: UserRegisterModel): void {
     this.userService.register(userRegisterModel).subscribe({
       next: (res) => {
@@ -60,7 +60,7 @@ export class RegisterComponent {
       },
     });
   }
-  
+
   private handleRegistrationSuccess(res: any): void {
     this.toast.success({
       detail: 'Success',
@@ -70,7 +70,7 @@ export class RegisterComponent {
     this.router.navigate(['login']);
     this.registerForm.reset();
   }
-  
+
   private handleRegistrationError(err: any): void {
     if (err instanceof HttpErrorResponse && err.status === 0) {
       this.toast.error({
@@ -81,12 +81,12 @@ export class RegisterComponent {
     } else {
       this.toast.error({
         detail: 'Error',
-        summary: err.error,
+        summary: err.error.Message,
         duration: 3000,
       });
     }
   }
-  
+
   private displayFormError(): void {
     this.toast.error({
       detail: 'Error',

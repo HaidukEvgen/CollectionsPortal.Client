@@ -10,15 +10,25 @@ import { NgToastModule } from 'ng-angular-popup';
 import { TokenInterceptor } from './interceptors/token.interceptor';
 import { MainPageComponent } from './components/main-page/main-page.component';
 import { HeaderComponent } from './components/header/header.component';
+import { CollectionsListComponent } from './components/collections-list/collections-list.component';
+import { CollectionDetailComponent } from './components/collection-detail/collection-detail.component';
+import { MatTableModule } from '@angular/material/table';
 
 @NgModule({
-  declarations: [AppComponent, MainPageComponent, HeaderComponent],
+  declarations: [
+    AppComponent,
+    MainPageComponent,
+    HeaderComponent,
+    CollectionsListComponent,
+    CollectionDetailComponent,
+  ],
   imports: [
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
     CommonModule,
     NgToastModule,
+    MatTableModule,
   ],
   providers: [
     importProvidersFrom(HttpClientModule),
