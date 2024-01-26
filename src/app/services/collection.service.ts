@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { environment } from '../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Category, Collection, Item, NewCollection, NewItem, Tag } from '../models/collection.model';
+import { Category, Collection, Item, ItemGeneralinfo, NewCollection, NewItem, Tag } from '../models/collection.model';
 
 @Injectable({
   providedIn: 'root'
@@ -30,6 +30,10 @@ export class CollectionService {
 
   deleteCollection(collectionId: number) {
     return this.http.delete(`${this.apiUrl}/collections/${collectionId}`);
+  }
+
+  getLatestItems(amount: number = 5): Observable<ItemGeneralinfo[]> {
+    return this.http.get<ItemGeneralinfo[]>(`${this.apiUrl}/collections/latest-items?amount=${amount}`);
   }
 
   getAllCollectionItems(collectionId: number): Observable<Item[]> {

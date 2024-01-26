@@ -102,4 +102,8 @@ export class ItemDetailComponent {
   getFormattedTags(): string {
     return this.item.tags.map((tag) => tag.name).join(', ');
   }
+
+  redirectToCollectionPage() {
+    this.router.navigate(['/collections', this.collectionId]);
+  }
 }

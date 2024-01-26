@@ -47,7 +47,7 @@
         </table>
 
         <div *ngIf="collection"  class="text-center mt-3 mb-5">
-          <button *ngIf="canEditCollection" class="btn btn-primary" (click)="redirectToNewItemPage()">
+          <button *ngIf="canEditCollection" class="btn btn-success" (click)="redirectToNewItemPage()">
             Add New Item
           </button>
           <span *ngIf="!canEditCollection" class="text-danger">

@@ -1,85 +1,84 @@
 <main>
   <article class="welcome-article">
     <section class="welcome-section white-section">
-      <h1 class="display-4">Welcome to our page</h1>
+      <h1 class="display-4">Welcome to Collections Portal</h1>
       <p class="lead">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus
-        repudiandae doloremque culpa error, numquam at?
-      </p>
-    </section>
-  </article>
-
-  <article class="small-article white-section-sm">
-    <section class="small-article-iconbox">
-      <div class="icon"><i class="bi bi-database-down"></i></div>
-      <div class="icon"><i class="bi bi-speedometer"></i></div>
-      <div class="icon"><i class="bi bi-cloud-upload"></i></div>
-      <h2 class="header-text-unicons">Data saving</h2>
-      <h2 class="header-text-unicons">Speed</h2>
-      <h2 class="header-text-unicons">Upload files</h2>
-    </section>
-  </article>
-
-  <article class="big-article">
-    <section>
-      <h2 class="display-6">Big section</h2>
-      <p class="">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident
-        veritatis necessitatibus earum perferendis totam error amet cum quis
-        neque vel.
+        This is a website for collection lovers, where you can explore, manage,
+        and share your diverse collections. Whether you collect stamps, coins,
+        books, or any other items, Collections Portal is the perfect place to
+        showcase your passion and connect with fellow enthusiasts.
       </p>
     </section>
   </article>
 
   <article class="small-article white-section-sm">
     <section>
-      <h2 class="display-6">Small section</h2>
-      <p class="">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam,
-        dolores!
-      </p>
+      <h2 class="display-6">Lately added items</h2>
+      <p class="">These are latest added items to different collections</p>
+    </section>
+  </article>
+
+  <article class="small-article">
+    <section>
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-md-12">
+            <div *ngIf="latestItems" class="collection-detail">
+              <h3 class="mt-4 mb-3">Latest added items</h3>
+              <table
+                mat-table
+                [dataSource]="latestItems"
+                class="mat-elevation-z8 bordered-table mt-3"
+              >
+                <ng-container matColumnDef="name">
+                  <th mat-header-cell *matHeaderCellDef>Name</th>
+                  <td mat-cell *matCellDef="let item">{{ item.name }}</td>
+                </ng-container>
+
+                <ng-container matColumnDef="collectionName">
+                  <th mat-header-cell *matHeaderCellDef>Collection</th>
+                  <td mat-cell *matCellDef="let item">
+                    {{ item.collectionName }}
+                  </td>
+                </ng-container>
+
+                <ng-container matColumnDef="creatorName">
+                  <th mat-header-cell *matHeaderCellDef>Creator</th>
+                  <td mat-cell *matCellDef="let item">
+                    {{ item.creatorName }}
+                  </td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr
+                  mat-row
+                  *matRowDef="let item; columns: displayedColumns"
+                  (click)="redirectToItemPage(item.collectionId, item.id)"
+                ></tr>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </article>
+
+  <article class="small-article white-section-sm">
+    <section>
+      <h2 class="display-6">Biggest collections</h2>
+      <p class="">These are biggest collections of all users</p>
     </section>
   </article>
 
   <article class="last-cards-collection">
-    <section class="last-card-object">
-      <h2>Collection 1</h2>
-      <img src="collection1.jpg" alt="Collection 1 Image">
-      <p>Description for Collection 1.</p>
-    </section>
-    <section class="last-card-object">
-      <h2>Collection 2</h2>
-      <img src="collection2.jpg" alt="Collection 2 Image">
-      <p>Description for Collection 2.</p>
-    </section>
-  </article>
-
-  <article class="small-article white-section-sm">
-    <section>
-      <h2 class="display-6">Small section</h2>
-      <p class="">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam,
-        dolores!
-      </p>
+    <section
+      *ngFor="let collection of collections"
+      class="last-card-object"
+      (click)="redirectToCollectionDetails(collection.id)"
+    >
+      <h2>{{ collection.name }}</h2>
+      <img [src]="collection.imageUrl" alt="{{ collection.name }} Image" />
+      <p>Creator: {{ collection.creatorName }}</p>
     </section>
   </article>
-
-  <article class="last-cards-collection">
-    <section class="last-card-object"></section>
-    <section class="last-card-object"></section>
-    <section class="last-card-object"></section>
-    <section class="last-card-object"></section>
-    <section class="last-card-object"></section>
-  </article>
-
-  <!-- <article class="big-article">
-        <section>
-          <h2 class="display-6">Big section</h2>
-          <p class="">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident
-            veritatis necessitatibus earum perferendis totam error amet cum quis
-            neque vel.
-          </p>
-        </section>
-      </article> -->
 </main>

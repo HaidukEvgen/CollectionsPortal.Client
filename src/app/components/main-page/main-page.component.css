@@ -103,7 +103,8 @@ footer {
   border-radius: 15px 15px 0 0;
 }
 
-.last-card-object h2, .last-card-object p {
+.last-card-object h2,
+.last-card-object p {
   padding: 1em;
   text-align: center;
 }
@@ -145,4 +146,23 @@ p {
   .last-cards-collection {
     flex-wrap: wrap;
   }
+}
+
+.bordered-table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.bordered-table th,
+.bordered-table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+.bordered-table th {
+  background-color: #f2f2f2;
+}
+
+.bordered-table tr:nth-child(even) {
+  background-color: #f9f9f9;
 }

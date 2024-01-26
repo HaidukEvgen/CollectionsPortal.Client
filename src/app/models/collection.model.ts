@@ -94,3 +94,11 @@ export interface NewItem {
   customDate2Value?: string;
   customDate3Value?: string;
 }
+
+export interface ItemGeneralinfo {
+  name: string;
+  id: number;
+  collectionName: string;
+  collectionId: number;
+  creatorName: string;
+}
