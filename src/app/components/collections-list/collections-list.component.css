@@ -21,6 +21,7 @@
   
   .last-card-object img {
     max-width: 90%;
+    max-height: 65%;
     border-radius: 15px 15px 15px 15px;
   }
   
