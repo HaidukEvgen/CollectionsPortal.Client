@@ -1,1 +1,309 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+      <div class="card border-0 shadow rounded-3 my-5">
+        <div class="card-body p-4 p-sm-5">
+          <h5 class="card-title text-center mb-5 fw-light fs-2">
+            Create new item
+          </h5>
+          <form
+            [formGroup]="newItemForm"
+            *ngIf="collection"
+            (ngSubmit)="onSubmit()"
+            class="mt-3"
+          >
+            <div class="mb-3">
+              <label for="name" class="form-label">Name:</label>
+              <input
+                type="text"
+                id="name"
+                formControlName="name"
+                class="form-control"
+              />
+            </div>
 
+            <div class="mb-3">
+              <label for="tags" class="form-label"
+                >Tags: (with spaces between)</label
+              >
+              <input
+                type="text"
+                id="tags"
+                formControlName="tags"
+                class="form-control"
+              />
+            </div>
+
+            <div
+              *ngIf="shouldDisplayCustomField(collection.customString1Name)"
+              class="form-group"
+            >
+              <label for="customString1Value" class="form-label">{{
+                collection.customString1Name
+              }}</label>
+              <div class="d-flex align-items-center">
+                <input
+                  type="text"
+                  id="customString1Value"
+                  formControlName="customString1Value"
+                  class="form-control"
+                  required="true"
+                />
+              </div>
+            </div>
+
+            <div
+              *ngIf="shouldDisplayCustomField(collection.customString2Name)"
+              class="form-group"
+            >
+              <label for="customString2Value" class="form-label">{{
+                collection.customString2Name
+              }}</label>
+              <div class="d-flex align-items-center">
+                <input
+                  type="text"
+                  id="customString2Value"
+                  formControlName="customString2Value"
+                  class="form-control"
+                  required="true"
+                />
+              </div>
+            </div>
+
+            <div
+              *ngIf="shouldDisplayCustomField(collection.customString3Name)"
+              class="form-group"
+            >
+              <label for="customString3Value" class="form-label">{{
+                collection.customString3Name
+              }}</label>
+              <div class="d-flex align-items-center">
+                <input
+                  type="text"
+                  id="customString3Value"
+                  formControlName="customString3Value"
+                  class="form-control"
+                  required="true"
+                />
+              </div>
+            </div>
+
+            <div
+              *ngIf="shouldDisplayCustomField(collection.customInt1Name)"
+              class="form-group"
+            >
+              <label for="customInt1Value" class="form-label">{{
+                collection.customInt1Name
+              }}</label>
+              <div class="d-flex align-items-center">
+                <input
+                  type="number"
+                  id="customInt1Value"
+                  formControlName="customInt1Value"
+                  class="form-control"
+                  required="true"
+                />
+              </div>
+            </div>
+
+            <div
+              *ngIf="shouldDisplayCustomField(collection.customInt2Name)"
+              class="form-group"
+            >
+              <label for="customInt2Value" class="form-label">{{
+                collection.customInt2Name
+              }}</label>
+              <div class="d-flex align-items-center">
+                <input
+                  type="number"
+                  id="customInt2Value"
+                  formControlName="customInt2Value"
+                  class="form-control"
+                  required="true"
+                />
+              </div>
+            </div>
+
+            <div
+              *ngIf="shouldDisplayCustomField(collection.customInt3Name)"
+              class="form-group"
+            >
+              <label for="customInt3Value" class="form-label">{{
+                collection.customInt3Name
+              }}</label>
+              <div class="d-flex align-items-center">
+                <input
+                  type="number"
+                  id="customInt3Value"
+                  formControlName="customInt3Value"
+                  class="form-control"
+                  required="true"
+                />
+              </div>
+            </div>
+
+            <div
+              *ngIf="shouldDisplayCustomField(collection.customText1Name)"
+              class="form-group"
+            >
+              <label for="customText1Value" class="form-label">{{
+                collection.customText1Name
+              }}</label>
+              <div class="d-flex align-items-center">
+                <textarea
+                  id="customText1Value"
+                  formControlName="customText1Value"
+                  class="form-control"
+                  required="true"
+                ></textarea>
+              </div>
+            </div>
+
+            <div
+              *ngIf="shouldDisplayCustomField(collection.customText2Name)"
+              class="form-group"
+            >
+              <label for="customText2Value" class="form-label">{{
+                collection.customText2Name
+              }}</label>
+              <div class="d-flex align-items-center">
+                <textarea
+                  id="customText2Value"
+                  formControlName="customText2Value"
+                  class="form-control"
+                  required="true"
+                ></textarea>
+              </div>
+            </div>
+
+            <div
+              *ngIf="shouldDisplayCustomField(collection.customText3Name)"
+              class="form-group"
+            >
+              <label for="customText3Value" class="form-label">{{
+                collection.customText3Name
+              }}</label>
+              <div class="d-flex align-items-center">
+                <textarea
+                  id="customText3Value"
+                  formControlName="customText3Value"
+                  class="form-control"
+                  required="true"
+                ></textarea>
+              </div>
+            </div>
+
+            <div
+              *ngIf="shouldDisplayCustomField(collection.customBool1Name)"
+              class="form-group"
+            >
+              <label class="form-check-label">{{
+                collection.customBool1Name
+              }}</label>
+              <div class="form-check">
+                <input
+                  type="checkbox"
+                  id="customBool1Value"
+                  formControlName="customBool1Value"
+                  class="form-check-input"
+                />
+              </div>
+            </div>
+
+            <div
+              *ngIf="shouldDisplayCustomField(collection.customBool2Name)"
+              class="form-group"
+            >
+              <label class="form-check-label">{{
+                collection.customBool2Name
+              }}</label>
+              <div class="form-check">
+                <input
+                  type="checkbox"
+                  id="customBool2Value"
+                  formControlName="customBool2Value"
+                  class="form-check-input"
+                />
+              </div>
+            </div>
+
+            <div
+              *ngIf="shouldDisplayCustomField(collection.customBool3Name)"
+              class="form-group"
+            >
+              <label class="form-check-label">{{
+                collection.customBool3Name
+              }}</label>
+              <div class="form-check">
+                <input
+                  type="checkbox"
+                  id="customBool3Value"
+                  formControlName="customBool3Value"
+                  class="form-check-input"
+                />
+              </div>
+            </div>
+
+            <div
+              *ngIf="shouldDisplayCustomField(collection.customDate1Name)"
+              class="form-group"
+            >
+              <label for="customDate1Value" class="form-label">{{
+                collection.customDate1Name
+              }}</label>
+              <div class="d-flex align-items-center">
+                <input
+                  type="date"
+                  id="customDate1Value"
+                  formControlName="customDate1Value"
+                  class="form-control"
+                  required="true"
+                />
+              </div>
+            </div>
+
+            <div
+              *ngIf="shouldDisplayCustomField(collection.customDate2Name)"
+              class="form-group"
+            >
+              <label for="customDate2Value" class="form-label">{{
+                collection.customDate2Name
+              }}</label>
+              <div class="d-flex align-items-center">
+                <input
+                  type="date"
+                  id="customDate2Value"
+                  formControlName="customDate2Value"
+                  class="form-control"
+                  required="true"
+                />
+              </div>
+            </div>
+
+            <div
+              *ngIf="shouldDisplayCustomField(collection.customDate3Name)"
+              class="form-group"
+            >
+              <label for="customDate3Value" class="form-label">{{
+                collection.customDate3Name
+              }}</label>
+              <div class="d-flex align-items-center">
+                <input
+                  type="date"
+                  id="customDate3Value"
+                  formControlName="customDate3Value"
+                  class="form-control"
+                  required="true"
+                />
+              </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary mt-3">
+              Create Item
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

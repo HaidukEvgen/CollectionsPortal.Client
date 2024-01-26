@@ -5,7 +5,6 @@ import { NgToastService } from 'ng-angular-popup';
 import { Collection, Item } from '../../models/collection.model';
 import { ExceptionHandler } from '../../helpers/exceptionHandler';
 import { AuthService } from '../../services/auth.service';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-item-detail',
@@ -18,24 +17,6 @@ export class ItemDetailComponent {
   item!: Item;
   collection!: Collection;
   canEditItem!: boolean;
-  // itemForm = this.formBuilder.group({
-  //   customString1Value: new FormControl(''),
-  //   customString2Value: new FormControl(''),
-  //   customString3Value: new FormControl(''),
-  //   customInt1Value: new FormControl(''),
-  //   customInt2Value: new FormControl(''),
-  //   customInt3Value: new FormControl(''),
-  //   customText1Name: new FormControl(''),
-  //   customText2Name: new FormControl(''),
-  //   customText3Name: new FormControl(''),
-  //   customBool1Name: new FormControl(''),
-  //   customBool2Name: new FormControl(''),
-  //   customBool3Name: new FormControl(''),
-  //   customDate1Name: new FormControl(''),
-  //   customDate2Name: new FormControl(''),
-  //   customDate3Name: new FormControl(''),
-  // });
-
   constructor(
     private route: ActivatedRoute,
     private router: Router,
@@ -99,7 +80,14 @@ export class ItemDetailComponent {
     this.collectionService
       .deleteCollectionItem(this.collectionId, this.itemId)
       .subscribe(
-        (data) => {},
+        (data) => {
+          this.toast.success({
+            detail: 'Success',
+            summary: 'Item deleted successfully',
+            duration: 3000,
+          });
+          this.router.navigate(['/collections', this.collectionId]);
+        },
         (error) => {
           this.exceptionHandler.handleHttpError(
             error,
@@ -109,5 +97,9 @@ export class ItemDetailComponent {
           );
         }
       );
+  }
+
+  getFormattedTags(): string {
+    return this.item.tags.map((tag) => tag.name).join(', ');
   }
 }
